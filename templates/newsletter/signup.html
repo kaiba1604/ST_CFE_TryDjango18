@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1> Hello {{ request.user }} </h1>
+<p> user: {{user}}</p>
+<div class='col-md-4' >
+    <form method='POST' action=''>
+        {% csrf_token %}
+
+        <table>
+        <!--{{ form.as_table }}-->
+            {{ form|crispy }}
+            <tr><td>
+                <input type="submit" value="Submit Here"/>
+            </td></tr>
+        </table>
+    </form>
+</div>
+{% endblock %}

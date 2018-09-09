@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class='col-md-12'>
+    <p> Got Question? <a href="{% url 'contact' %}"> Click here </a> to send us a direct message </p>
+</div>
+<div class='col-md-4'>
+    <form method='POST' action='' >
+    {% csrf_token %}
+    {% if disabled %} <fieldset disabled="{{disabled}}"> {% endif %}
+        {{ form|crispy }}
+    {% if disabled %} </fieldset> {% endif %}
+    <input type='submit' value='submit' />
+    </form>
+</div>
+{% endblock %}

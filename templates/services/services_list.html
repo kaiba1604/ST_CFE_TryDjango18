@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p><a href="{% url 'services_new' %}">Click here</a> to create one</p>
+{% if not queryset %}
+    <h1> There is no Service Request</h1>
+
+{% else %}
+    <h1>
+        Listing of Service Requests:
+    </h1>
+    <ol>
+        {% for object in queryset %}
+        <li><a href="{{object.get_absolute_url}}"> {{object}}</a>
+            {% if user.is_superuser or user.is_staff %} - <a href="{{object.get_absolute_url}}/edit"> Edit </a>
+            {% endif %}
+        </li>
+        {% endfor %}
+{% endif %}
+    </ol>
+{% endblock %}
